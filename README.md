@@ -1,2 +1,2 @@
 # workshop-notes
-sketches, drafts, notes, practicing
+sketches, drafts, notes, practicing - personal experiments
