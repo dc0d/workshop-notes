@@ -1,3 +1,5 @@
+CVPKG=$(go list ./... | grep -v modeltest | tr '\n' ',')
+
 .PHONY: test
 test:
 	clear
@@ -5,22 +7,25 @@ test:
 
 cover:
 	clear
-	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=./... ./...; \
+	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=$(CVPKG) ./...
 	go tool cover -html=cover-profile.out -o cover-coverage.html
 
 cover-accp:
 	clear
-	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=./... ./... -acceptance; \
+	RUN_TESTS=acceptance \
+	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=$(CVPKG) ./...
 	go tool cover -html=cover-profile.out -o cover-coverage.html
 
 cover-intg:
 	clear
-	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=./... ./... -integration; \
+	RUN_TESTS=integration \
+	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=$(CVPKG) ./...
 	go tool cover -html=cover-profile.out -o cover-coverage.html
 
 cover-all:
 	clear
-	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=./... ./... -acceptance -integration; \
+	RUN_TESTS=acceptance,integration \
+	go test -count=1 -timeout 10s -coverprofile=cover-profile.out -covermode=set -coverpkg=$(CVPKG) ./...
 	go tool cover -html=cover-profile.out -o cover-coverage.html
 
 lint:

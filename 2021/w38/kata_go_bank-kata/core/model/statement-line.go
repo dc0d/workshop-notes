@@ -11,8 +11,13 @@ func (obj statementLine) String() string {
 }
 
 func (obj statementLine) SignedAmount() int {
-	amount := int(obj.Amount)
-	if obj.TransactionType == Withdrawal {
+	amount := signedAmount(obj.Amount, obj.TransactionType)
+	return amount
+}
+
+func signedAmount(in Amount, txtype TransactionType) int {
+	amount := int(in)
+	if txtype == Withdrawal {
 		amount *= -1
 	}
 	return amount

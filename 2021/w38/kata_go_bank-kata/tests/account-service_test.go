@@ -23,11 +23,7 @@ func Test_AccountService(t *testing.T) {
 type acceptanceSuiteAccountService struct {
 	suite.Suite
 
-	db       *bolt.DB
-	clientID model.ClientID
-
-	repo *boltstore.AccountRepo
-	sut  *account.AccountService
+	acceptanceSuiteAccountServiceState // interesting way to reset state between tests (tear down is different)
 }
 
 func (obj *acceptanceSuiteAccountService) SetupSuite() {
@@ -37,6 +33,8 @@ func (obj *acceptanceSuiteAccountService) SetupSuite() {
 }
 
 func (obj *acceptanceSuiteAccountService) SetupTest() {
+	obj.acceptanceSuiteAccountServiceState = acceptanceSuiteAccountServiceState{}
+
 	obj.clientID = model.ClientID(xid.New().String())
 
 	dbpath := filepath.Join(os.TempDir(), xid.New().String())
@@ -94,4 +92,14 @@ func (obj *acceptanceSuiteAccountService) Test_desired_behavior() {
 
 func date(year int, month time.Month, day int) time.Time {
 	return time.Date(year, month, day, 0, 0, 0, 0, time.UTC)
+}
+
+// why structcheck gives false positive on this?
+//nolint:structcheck
+type acceptanceSuiteAccountServiceState struct {
+	db       *bolt.DB
+	clientID model.ClientID
+
+	repo *boltstore.AccountRepo
+	sut  *account.AccountService
 }

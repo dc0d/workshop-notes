@@ -1,28 +1,29 @@
 package support
 
 import (
-	"flag"
-
-	_ "github.com/stretchr/testify/suite"
+	"os"
+	"strings"
 )
 
 func RunAcceptanceTest() bool {
-	if acceptance == nil {
-		return false
-	}
-
-	return *acceptance
+	return isTestFlagPresent(getTestFlags(), acceptanceFlag)
 }
 
 func RunIntegrationTest() bool {
-	if integration == nil {
-		return false
-	}
-
-	return *integration
+	return isTestFlagPresent(getTestFlags(), integrationFlag)
 }
 
-var (
-	acceptance  = flag.Bool("acceptance", false, "acceptance")
-	integration = flag.Bool("integration", false, "integration")
+func getTestFlags() string {
+	testFlags := os.Getenv(testFlagsEnvVarName)
+	return testFlags
+}
+
+func isTestFlagPresent(testFlags, flag string) bool {
+	return strings.Contains(testFlags, flag)
+}
+
+const (
+	acceptanceFlag      = "acceptance"
+	integrationFlag     = "integration"
+	testFlagsEnvVarName = "RUN_TESTS"
 )
