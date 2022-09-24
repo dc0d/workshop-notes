@@ -1,0 +1,43 @@
+{
+  "name": "tslab",
+  "version": "0.1.0",
+  "description": "TypeScript Lab",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "nodemon src/index.ts",
+    "build": "npm run lint && rimraf dist/ && tsc",
+    "start": "npm run build && node dist/index.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
+    "protogen": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./src ./protos/person.proto"
+  },
+  "keywords": [],
+  "author": "Kaveh",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^29.0.3",
+    "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^29.0.3",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^29.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "dependencies": {
+    "ts-proto": "^1.126.1"
+  },
+  "engines": {
+    "npm": ">=8.0.0",
+    "node": ">=18.0.0"
+  }
+}

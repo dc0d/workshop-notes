@@ -1,0 +1,27 @@
+{
+  "files.trimTrailingWhitespace": true,
+  "[proto3]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // preconfig ESLint
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode" // preconfig ESLint
+  },
+  "javascript.format.insertSpaceBeforeFunctionParenthesis": false, // align with ESLint Standard
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": false, // align with ESLint Standard
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "editor.inlineSuggest.enabled": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "files.autoSave": "onFocusChange",
+  "eslint.format.enable": true,
+  "prettier.semi": false, // align with ESLint Standard
+  "prettier.singleQuote": true, // align with ESLint Standard
+  "prettier.trailingComma": "none"
+}
