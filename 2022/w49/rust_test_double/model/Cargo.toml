@@ -1,0 +1,17 @@
+[package]
+name = "model"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = "1.0.147"
+serde_json = "1.0.87"
+serde_derive = "1.0.147"
+serde_with = "2.1.0"
+chrono = { version = "0.4.23", features = ["serde"] }
+validator = { version = "0.15", features = ["derive"] }
+lazy_static = "1.4.0"
+regex = "1.7.0"
+async-trait = "0.1.59"

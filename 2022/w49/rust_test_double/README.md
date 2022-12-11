@@ -1,0 +1,2 @@
+- the only focus of this code is practicing in manually creating test doubles based on traits
+- wip
